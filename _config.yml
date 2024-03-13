@@ -3,5 +3,11 @@ plugins:
 - jekyll-remote-theme
 show_downloads: true
 logo: /logo.png
-title: bercon
-description: bercon - BattlEye RCON CLI
+title: ./bercon
+description: BattlEye RCON CLI
+markdown: GFM
+github:
+  zip_url: https://github.com/WoozyMasta/bercon/zipball/master
+  tar_url: https://github.com/WoozyMasta/bercon/tarball/master
+  linux: https://github.com/WoozyMasta/bercon/releases/latest/download/bercon
+  windows: https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe

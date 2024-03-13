@@ -190,6 +190,6 @@ dayz-all-shutdown 360
 [logo]: ../logo.png
 
 [Linux]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon> "Linux x86 gcc binary"
-[Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon> "Windows exe файл"
+[Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe> "Windows exe файл"
 [BattlEye]: <https://www.battleye.com/> "BattlEye – The Anti-Cheat Gold Standard"
 [BERConProtocol]: <https://www.battleye.com/downloads/BERConProtocol.txt> "Спецификация протокола BattlEye RCON"
