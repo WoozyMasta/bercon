@@ -1,0 +1,50 @@
+name: Create Release
+on:
+  push:
+    tags:
+      - "*.**"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set env
+        id: env
+        run: |
+          echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+          echo ::set-output name=repository::${GITHUB_REPOSITORY/-}
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Create Linux Release
+        if: matrix.os == 'ubuntu-latest'
+        id: create_linux_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./target/release/bercon
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Windows Release
+        if: matrix.os == 'windows-latest'
+        id: create_windows_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./target/release/bercon.exe
+          token: ${{ secrets.GITHUB_TOKEN }}

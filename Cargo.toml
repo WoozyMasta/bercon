@@ -1,0 +1,21 @@
+[package]
+name = "bercon"
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/WoozyMasta/bercon"
+readme = "README.md"
+description = "BattlEye RCON CLI"
+keywords = ["cli", "rcon", "arma", "arma3", "battleye", "dayz", "rcon-client", "rcon-console", "battleye-rcon" ]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.5.2", features = ["derive","env"] }
+battleye-rust = "1.0.0"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
