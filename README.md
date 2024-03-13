@@ -187,7 +187,7 @@ dayz-all-shutdown 360
 [ua 🇺🇦]: docs/README.ua.md
 [rus 🇷🇺]: docs/README.ru.md
 [cz 🇨🇿]: docs/README.cz.md
-[logo]: logo.png
+[logo]: assets/logo.png
 
 [Linux]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon> "Linux x86 gcc binary"
 [Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe> "Windows exe file"
