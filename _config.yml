@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+show_downloads: true
+logo: /logo.png
+title: bercon
+description: bercon - BattlEye RCON CLI
