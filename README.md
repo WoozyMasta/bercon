@@ -6,7 +6,7 @@
 
 <!-- rule: current lang, other langs sorted by alpha -->
 > [!NOTE]  
-> > This document is available in the languages:
+> This document is available in the languages:
 > [eng 🇬🇧][], [cz 🇨🇿][], [rus 🇷🇺][], [ua 🇺🇦][]
 
 ## Description
