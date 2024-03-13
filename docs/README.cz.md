@@ -31,6 +31,7 @@ Pro Linux můžete také použít příkaz
 curl -#SfLo /usr/bin/bercon \
   https://github.com/WoozyMasta/bercon/releases/latest/download/bercon
 chmod +x /usr/bin/bercon
+bercon -h && bercon -V
 ```
 
 Nebo si sestavení proveďte sami

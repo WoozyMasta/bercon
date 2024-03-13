@@ -31,6 +31,7 @@ For Linux you can also use the command
 curl -#SfLo /usr/bin/bercon \
   https://github.com/WoozyMasta/bercon/releases/latest/download/bercon
 chmod +x /usr/bin/bercon
+bercon -h && bercon -V
 ```
 
 Or do the build yourself

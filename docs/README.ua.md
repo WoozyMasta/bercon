@@ -31,6 +31,7 @@
 curl -#SfLo /usr/bin/bercon \
   https://github.com/WoozyMasta/bercon/releases/latest/download/bercon
 chmod +x /usr/bin/bercon
+bercon -h && bercon -V
 ```
 
 Або виконати збірку самостійно
