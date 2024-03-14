@@ -101,7 +101,7 @@ bercon -i 192.168.0.10 -p 2306 -P 'pas$$word' exec -- '#unlock'
 bercon -t1 -i 192.168.0.10 -p 2306 -P 'pas$$word' exec -- say -1 'Hello world!'
 ```
 
-## Další příklady
+## Další linux příklady
 
 Proměnné můžete také použít k uložení parametrů pro
 různé servery v různých souborech
@@ -163,6 +163,12 @@ dayz-all-restart
 dayz-all-restart 360
 ```
 
+> [!CAUTION]  
+> V době psaní tohoto článku má upravená verze serveru DayZ pro Linux
+> problém se zastavováním serveru ([T179734]), možná budete chtít sledovat
+> stav procesu. Jako jedno z řešení slouží například skript
+> [DayZ Linux Server watchdog].
+
 Pomocí tohoto příkladu můžete zastavit a vypnout všechny servery DayZ
 před údržbou svého serveru
 
@@ -194,3 +200,5 @@ dayz-all-shutdown 360
 [Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe> "Windows exe soubor"
 [BattlEye]: <https://www.battleye.com/> "BattlEye - zlatý standard pro boj s podvody"
 [BERConProtocol]: <https://www.battleye.com/downloads/BERConProtocol.txt> "BattlEye RCON Protocol Specification"
+[T179734]: https://feedback.bistudio.com/T179734 "linux modded server shutdown bug"
+[DayZ Linux Server watchdog]: https://gist.github.com/WoozyMasta/3c3aaf8d1b1517e9ee47c6b2a96fee96 "DayZ Linux Server watchdog"

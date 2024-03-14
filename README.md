@@ -101,7 +101,7 @@ bercon -i 192.168.0.10 -p 2306 -P 'pas$$word' exec -- '#unlock'
 bercon -t1 -i 192.168.0.10 -p 2306 -P 'pas$$word' exec -- say -1 'Hello world!'
 ```
 
-## Additional examples
+## Additional linux examples
 
 You can also use variables to store parameters for
 different servers in different files
@@ -163,6 +163,12 @@ dayz-all-restart
 dayz-all-restart 360
 ```
 
+> [!CAUTION]  
+> At the time of writing, the modified version of the DayZ server for Linux
+> has a problem with server stopping ([T179734]), you may need to additionally
+> monitor the state of the process. As one solution for example
+> script [DayZ Linux Server watchdog]
+
 With this example, you can stop and shut down all DayZ servers
 before maintaining your server
 
@@ -194,3 +200,5 @@ dayz-all-shutdown 360
 [Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe> "Windows exe file"
 [BattlEye]: <https://www.battleye.com/> "BattlEye – The Anti-Cheat Gold Standard"
 [BERConProtocol]: <https://www.battleye.com/downloads/BERConProtocol.txt> "BattlEye RCON Protocol Specification"
+[T179734]: https://feedback.bistudio.com/T179734 "linux modded server shutdown bug"
+[DayZ Linux Server watchdog]: https://gist.github.com/WoozyMasta/3c3aaf8d1b1517e9ee47c6b2a96fee96 "DayZ Linux Server watchdog"

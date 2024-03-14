@@ -100,7 +100,7 @@ bercon -i 192.168.0.10 -p 2306 -P 'pas$$word' exec -- '#unlock'
 bercon -t1 -i 192.168.0.10 -p 2306 -P 'pas$$$word' exec -- say -1 'Hello world!'
 ```
 
-## Додаткові приклади
+## Додаткові linux приклади
 
 Ви також можете використовувати змінні для збереження параметрів для
 різних серверів у різних файлах
@@ -162,6 +162,12 @@ dayz-all-restart
 dayz-all-restart 360
 ```
 
+> [!CAUTION]  
+> На момент написання модифікована версія DayZ сервера для Linux має
+> проблему із зупинкою сервера ([T179734]), можливо вам знадобиться
+> додатково стежити за станом процесу. Як одне з рішень, наприклад
+> скрипт [DayZ Linux Server watchdog]
+
 За допомогою цього прикладу ви можете зупинити і відключити всі сервери DayZ
 перед обслуговуванням вашого сервера
 
@@ -193,3 +199,5 @@ dayz-all-shutdown 360
 [Windows]: <https://github.com/WoozyMasta/bercon/releases/latest/download/bercon.exe> "Windows exe файл"
 [BattlEye]: <https://www.battleye.com/> "BattlEye - The Anti-Cheat Gold Standard"
 [BERConProtocol]: <https://www.battleye.com/downloads/BERConProtocol.txt> "Специфікація протоколу BattlEye RCON"
+[T179734]: https://feedback.bistudio.com/T179734 "linux modded server shutdown bug"
+[DayZ Linux Server watchdog]: https://gist.github.com/WoozyMasta/3c3aaf8d1b1517e9ee47c6b2a96fee96 "DayZ Linux Server watchdog"
