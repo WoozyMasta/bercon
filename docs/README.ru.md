@@ -148,11 +148,11 @@ DayZ одновременно, предварительно оповестив �
 
 ```bash
 dayz-all-restart() {
-  local timer="${1:-120}"
+  local timer="${1:-120}" step="${2:-10}"
   dayz-all-rcon '#lock'
   dayz-all-rcon say -1 "Server locked for new connection, restart after $timer seconds"
-  while (( --timer >= 0 )); do
-    sleep 1s
+  for i in $(seq "$timer" "-$step" 0); do
+    sleep "$step"
     dayz-all-rcon say -1 "Restart server after $timer seconds"
   done
   dayz-all-rcon '#shutdown'
@@ -178,7 +178,7 @@ dayz-all-restart 360
 
 ```bash
 dayz-all-shutdown() {
-  dayz-all-restart "${1:-120}"
+  dayz-all-restart "${1:-120}" "${2:-10}"
   for i in $(seq 1 "$DAYZ_SERVERS_COUNT"); do
     systemctl --user stop "dayz-server@$i.service" &
     systemctl --user disable "dayz-server@$i.service"
