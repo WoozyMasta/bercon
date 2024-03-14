@@ -126,10 +126,11 @@ BERCON_PASSWORD='pas$$word'
 export DAYZ_SERRVER_COUNT=5
 
 dayz-all-rcon() {
-  for i in {1..$DAYZ_SERRVER_COUNT}; do
-    echo "server-$i"
+  for i in $(seq 1 "$DAYZ_SERVERS_COUNT"); do
+    printf '[%s] ' "Server-$i"
     . "~/.server-$i.env"
-    bercon -t1s exec -- "$1";
+    bercon -t1 exec -- "$1";
+    echo
   done
 }
 
@@ -171,7 +172,7 @@ dayz-all-restart 360
 ```bash
 dayz-all-shutdown() {
   dayz-all-restart "${1:-120}"
-  for i in {1..$DAYZ_SERRVER_COUNT}; do
+  for i in $(seq 1 "$DAYZ_SERVERS_COUNT"); do
     systemctl --user stop "dayz-server@$i.service" &
     systemctl --user disable "dayz-server@$i.service"
   done
