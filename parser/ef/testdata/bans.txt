@@ -1,0 +1,3 @@
+Total bans: 1 | Page: 1/1
+- Identity Id | Banned name
+- 8e0a172c-9b12-4f40-85c1-7218dd42a612 | Example Player

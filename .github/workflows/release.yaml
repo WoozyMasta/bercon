@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+
+      - uses: rvben/rumdl@v0
+
+      - name: Run CI
+        run: make ci test-race fuzz
+
+      - name: Extract changelog
+        run: make release-notes > release.md
+
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          bodyFile: release.md
+
+      - name: Request pkg.go.dev reindex
+        continue-on-error: true
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          MODULE="$(GOWORK=off go list -m)"
+          curl --silent --show-error --fail-with-body \
+            --retry 3 --retry-delay 2 \
+            "https://proxy.golang.org/${MODULE}/@v/${VERSION}.info"

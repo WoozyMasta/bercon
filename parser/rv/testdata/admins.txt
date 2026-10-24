@@ -1,0 +1,4 @@
+Connected RCon admins:
+[#] [IP Address]:[Port]
+-----------------------------
+0 127.0.0.1:12345

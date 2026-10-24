@@ -1,0 +1,7 @@
+GUID Bans:
+[#] [GUID] [Minutes left] [Reason]
+----------------------------------------
+
+IP Bans:
+[#] [IP Address] [Minutes left] [Reason]
+----------------------------------------------

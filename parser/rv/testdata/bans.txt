@@ -1,0 +1,8 @@
+GUID Bans:
+[#] [GUID] [Minutes left] [Reason]
+----------------------------------------
+0  00000000000000000000000000000001 60   bercon_fixture_probe
+
+IP Bans:
+[#] [IP Address] [Minutes left] [Reason]
+----------------------------------------------

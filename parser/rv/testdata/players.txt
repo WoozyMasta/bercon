@@ -1,0 +1,5 @@
+Players on server:
+[#] [IP Address]:[Port] [Ping] [GUID] [Name]
+--------------------------------------------------
+0  127.0.0.1:2302 42 0123456789abcdef0123456789abcdef(OK) Player Name (Lobby)
+(1 players in total)

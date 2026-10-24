@@ -1,0 +1,4 @@
+Players on server:
+[#] [IP Address]:[Port] [Ping] [GUID] [Name]
+--------------------------------------------------
+(0 players in total)

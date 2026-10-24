@@ -1,0 +1,65 @@
+version: "2"
+run:
+  tests: true
+linters:
+  enable:
+    - modernize
+    - prealloc
+    - tagliatelle
+    - perfsprint
+    - asciicheck
+    - bidichk
+    - decorder
+    - dupl
+    - gocritic
+    - bodyclose
+    - gosec
+    - nilerr
+    - predeclared
+    - revive
+    - rowserrcheck
+    - tparallel
+    - unconvert
+    - unparam
+    - whitespace
+    - staticcheck
+    - goheader
+
+  exclusions:
+    generated: lax
+    presets:
+      - common-false-positives
+    rules:
+      - path: internal/
+        linters:
+          - revive
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+
+  settings:
+    goheader:
+      template: |-
+        SPDX-License-Identifier: MIT
+        Copyright (c) 2026 WoozyMasta
+        Source: github.com/woozymasta/bercon
+    tagliatelle:
+      case:
+        rules:
+          json: snake
+          yaml: snake
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
