@@ -76,6 +76,14 @@ func TestParseEmptyBanList(t *testing.T) {
 	}
 }
 
+// TestParseEmptyBanResponse accepts the zero-byte response returned for an empty Reforger ban list.
+func TestParseEmptyBanResponse(t *testing.T) {
+	bans, err := ParseBans(nil)
+	if err != nil || len(bans) != 0 {
+		t.Fatalf("bans=%#v err=%v; want no bans", bans, err)
+	}
+}
+
 func TestParseMalformedBan(t *testing.T) {
 	data := []byte("Total bans: 1 | Page: 1/1\n" +
 		"- Identity Id | Banned name\n- invalid-id | Unknown\n")
@@ -117,8 +125,8 @@ func TestRecognitionContract(t *testing.T) {
 		},
 		"bans": {
 			parse: func(data []byte) error { _, err := ParseBans(data); return err },
-			valid: [][]byte{bans, bansEmpty},
-			bad:   [][]byte{players, playersEmpty, rvPlayers, rvAdmins, rvBans, []byte("OK"), nil, message},
+			valid: [][]byte{bans, bansEmpty, nil},
+			bad:   [][]byte{players, playersEmpty, rvPlayers, rvAdmins, rvBans, []byte("OK"), message},
 		},
 	} {
 		t.Run(name, func(t *testing.T) {

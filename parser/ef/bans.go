@@ -26,6 +26,10 @@ type Ban struct {
 // ParseBans parses the paged Enfusion identity/name ban-list response.
 // Partial results are reported with parser.ErrMalformedRows.
 func ParseBans(data []byte) ([]Ban, error) {
+	if len(data) == 0 {
+		return nil, nil
+	}
+
 	if hasLine(data, "Server has no bans to list.") {
 		return nil, nil
 	}
