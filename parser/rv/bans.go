@@ -47,14 +47,20 @@ type Bans struct {
 	IP   []Ban `json:"ip,omitempty" yaml:"ip,omitempty"`     // Parsed IPv4 bans.
 }
 
-// ParseBans parses the Real Virtuality GUID and IP ban sections.
+// ParseBans parses both Real Virtuality ban sections and reports truncated rows or sections.
 func ParseBans(data []byte) (Bans, error) {
-	if !hasLine(data, "GUID Bans:") && !hasLine(data, "IP Bans:") {
+	hasGUIDSection := hasLine(data, "GUID Bans:")
+	hasIPSection := hasLine(data, "IP Bans:")
+	if !hasGUIDSection && !hasIPSection {
 		return Bans{}, parser.ErrUnrecognized
 	}
 
 	var out Bans
 	var issues []string
+	if !hasGUIDSection || !hasIPSection {
+		issues = append(issues, "ban response is missing a section")
+	}
+
 	section := ""
 
 	for _, line := range strings.Split(string(data), "\n") {
@@ -83,6 +89,7 @@ func ParseBans(data []byte) (Bans, error) {
 
 		f := strings.Fields(line)
 		if len(f) < 3 {
+			issues = append(issues, fmt.Sprintf("ban row %q: expected at least 3 fields", line))
 			continue
 		}
 

@@ -36,7 +36,10 @@ func ExampleParseAdmins() {
 }
 
 func ExampleParseBans() {
-	bans, err := rv.ParseBans([]byte("GUID Bans:\n0 0123456789abcdef0123456789abcdef perm cheating\n"))
+	bans, err := rv.ParseBans([]byte(
+		"GUID Bans:\n0 0123456789abcdef0123456789abcdef perm cheating\n" +
+			"IP Bans:\n",
+	))
 	if err != nil {
 		panic(err)
 	}

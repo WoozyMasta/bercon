@@ -14,5 +14,10 @@ Malformed rows with useful data are retained;
 callers can inspect validity fields and use [parser.ErrMalformedRows] to detect partial results.
 An unrecognized payload returns [parser.ErrUnrecognized].
 Empty player, admin, and ban lists are valid responses and return nil error.
+
+DayZ RCon responses appear limited to about 256 KiB.
+This was observed with a large response and is expected to apply to other commands as well.
+Large responses may be incomplete; parsers report detectable truncation,
+but raw response consumers cannot verify completeness from the response alone.
 */
 package rv

@@ -105,12 +105,16 @@ func TestResponseFixtures(t *testing.T) {
 		t.Fatal(err)
 	}
 	bans, err := ParseBans(bansData)
-	if err != nil || len(bans.GUID) != 1 || len(bans.IP) != 0 {
+	if err != nil || len(bans.GUID) != 1 || len(bans.IP) != 1 {
 		t.Fatalf("bans=%#v err=%v", bans, err)
 	}
 	if bans.GUID[0].Subject != "00000000000000000000000000000001" ||
-		bans.GUID[0].Minutes != 60 || bans.GUID[0].Reason != "bercon_fixture_probe" {
+		bans.GUID[0].Minutes != 60 || bans.GUID[0].Reason != "bercon fixture GUID ban" {
 		t.Fatalf("unexpected GUID ban: %#v", bans.GUID[0])
+	}
+	if bans.IP[0].Subject != "192.0.2.1" || bans.IP[0].Minutes != -1 ||
+		bans.IP[0].Reason != "Test IP ban" {
+		t.Fatalf("unexpected IP ban: %#v", bans.IP[0])
 	}
 
 	emptyBansData, err := responseFixtures.ReadFile("testdata/bans_empty.txt")
@@ -207,6 +211,44 @@ func TestMalformedRecognizedResponses(t *testing.T) {
 		"1 invalid-guid invalid-time test reason\n"))
 	if !errors.Is(bansErr, parser.ErrMalformedRows) || errors.Is(bansErr, parser.ErrUnrecognized) || len(bans.GUID) != 1 {
 		t.Fatalf("bans=%#v err=%v; want retained malformed row", bans, bansErr)
+	}
+}
+
+// TestParseBansDetectsTruncatedSections keeps incomplete RCon ban lists from appearing complete.
+func TestParseBansDetectsTruncatedSections(t *testing.T) {
+	tests := []struct {
+		name string
+		data string
+		guid int
+		ip   int
+	}{
+		{
+			name: "missing IP section",
+			data: "GUID Bans:\n[#] [GUID] [Minutes left] [Reason]\n" +
+				"0 00000000000000000000000000000001 perm test\n",
+			guid: 1,
+		},
+		{
+			name: "partial final row",
+			data: "GUID Bans:\n[#] [GUID] [Minutes left] [Reason]\n" +
+				"0 00000000000000000000000000000001 perm test\n" +
+				"IP Bans:\n[#] [IP Address] [Minutes left] [Reason]\n" +
+				"1 192.0.2.1 perm test\n2 192.0.2.",
+			guid: 1,
+			ip:   1,
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			bans, err := ParseBans([]byte(test.data))
+			if !errors.Is(err, parser.ErrMalformedRows) {
+				t.Fatalf("ParseBans() error = %v, want malformed response", err)
+			}
+			if len(bans.GUID) != test.guid || len(bans.IP) != test.ip {
+				t.Fatalf("ParseBans() retained %d GUID and %d IP rows, want %d and %d",
+					len(bans.GUID), len(bans.IP), test.guid, test.ip)
+			}
+		})
 	}
 }
 

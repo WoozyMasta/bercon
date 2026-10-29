@@ -1,8 +1,9 @@
 GUID Bans:
 [#] [GUID] [Minutes left] [Reason]
 ----------------------------------------
-0  00000000000000000000000000000001 60   bercon_fixture_probe
+0  00000000000000000000000000000001 60   bercon fixture GUID ban
 
 IP Bans:
 [#] [IP Address] [Minutes left] [Reason]
 ----------------------------------------------
+1  192.0.2.1       perm Test IP ban
