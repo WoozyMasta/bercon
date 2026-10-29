@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning][].
 ### Removed
 -->
 
+## [0.1.1][] - 2026-10-29
+
+### Fixed
+
+* RV ban parsing reports incomplete sections and malformed rows.
+* EF ban parsing accepts a zero-byte response as an empty ban list.
+
+[0.1.1]: https://github.com/WoozyMasta/bercon-cli/compare/v0.1.0...v0.1.1
+
 ## [0.1.0][] - 2026-10-24
 
 ### Added
